@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eurotour Football 2026 ⚽</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 40px 20px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            text-decoration: none;
+            display: inline-block;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+        
+        .download-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .download-card {
+            background: white;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            transform: translateY(20px);
+            animation: slideInUp 1s ease-out 1s both;
+        }
+        
+        .matches-section {
+            padding: 100px 20px;
+            background: linear-gradient(45deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            text-align: center;
+            margin-bottom: 80px;
+            font-weight: 800;
+        }
+        
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .match-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .match-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .match-card:hover::before {
+            left: 100%;
+        }
+        
+        .match-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .match-date {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .match-teams {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .match-stadium {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        
+        .match-location {
+            font-size: 1rem;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .country-flag {
+            width: 24px;
+            height: 16px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+        
+        .stats-section {
+            background: #fff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .stat-card {
+            padding: 30px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(0.9);
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+        
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.4s; }
+        .stat-card:nth-child(4) { animation-delay: 0.6s; }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        .download-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(76, 175, 80, 0.4);
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .matches-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>⚽ EUROTOUR<br>FOOTBALL 2026</h1>
+            <p>Vive la experiencia futbolística más espectacular de Europa</p>
+            <a href="#matches" class="cta-button">Ver Calendario Completo</a>
+        </div>
+    </header>
+
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title" style="color: #333;">Números que Impresionan</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Partidos Épicos</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Países</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Estadios Legendarios</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Meses de Fútbol</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="matches" class="matches-section">
+        <div class="container">
+            <h2 class="section-title">Calendario de Partidos</h2>
+            <div class="matches-grid">
+                <div class="match-card">
+                    <div class="match-date">21-22 MAR 2026</div>
+                    <div class="match-teams">Real Madrid vs Atlético de Madrid</div>
+                    <div class="match-stadium">🏟️ Santiago Bernabéu</div>
+                    <div class="match-location">
+                        <span style="background: #c60b1e; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Madrid, España
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">28-29 MAR 2026</div>
+                    <div class="match-teams">Borussia Dortmund vs Bayern Munich</div>
+                    <div class="match-stadium">🏟️ Signal Iduna Park</div>
+                    <div class="match-location">
+                        <span style="background: #ffce00; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Dortmund, Alemania
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">4 ABR 2026</div>
+                    <div class="match-teams">Inter de Milán vs Roma</div>
+                    <div class="match-stadium">🏟️ San Siro</div>
+                    <div class="match-location">
+                        <span style="background: #009246; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Milán, Italia
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">4 ABR 2026</div>
+                    <div class="match-teams">Napoli vs AC Milan</div>
+                    <div class="match-stadium">🏟️ Stadio Diego Armando Maradona</div>
+                    <div class="match-location">
+                        <span style="background: #009246; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Nápoles, Italia
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">18 ABR 2026</div>
+                    <div class="match-teams">Roma vs Lazio</div>
+                    <div class="match-stadium">🏟️ Stadio Olimpico</div>
+                    <div class="match-location">
+                        <span style="background: #009246; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Roma, Italia
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">18 ABR 2026</div>
+                    <div class="match-teams">Everton vs Liverpool</div>
+                    <div class="match-stadium">🏟️ Goodison Park</div>
+                    <div class="match-location">
+                        <span style="background: #012169; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Liverpool, Inglaterra
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">25 ABR 2026</div>
+                    <div class="match-teams">AC Milan vs Juventus</div>
+                    <div class="match-stadium">🏟️ Allianz Stadium</div>
+                    <div class="match-location">
+                        <span style="background: #009246; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Turín, Italia
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">2 MAY 2026</div>
+                    <div class="match-teams">Manchester United vs Liverpool</div>
+                    <div class="match-stadium">🏟️ Old Trafford</div>
+                    <div class="match-location">
+                        <span style="background: #012169; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Manchester, Inglaterra
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">9 MAY 2026</div>
+                    <div class="match-teams">Liverpool vs Chelsea</div>
+                    <div class="match-stadium">🏟️ Anfield</div>
+                    <div class="match-location">
+                        <span style="background: #012169; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Liverpool, Inglaterra
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">9 MAY 2026</div>
+                    <div class="match-teams">Liverpool vs Chelsea</div>
+                    <div class="match-stadium">🏟️ Stamford Bridge</div>
+                    <div class="match-location">
+                        <span style="background: #012169; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Londres, Inglaterra
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">9-10 MAY 2026</div>
+                    <div class="match-teams">FC Barcelona vs Real Madrid</div>
+                    <div class="match-stadium">🏟️ Spotify Camp Nou</div>
+                    <div class="match-location">
+                        <span style="background: #c60b1e; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Barcelona, España
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">16 MAY 2026</div>
+                    <div class="match-teams">Arsenal vs Chelsea</div>
+                    <div class="match-stadium">🏟️ Emirates Stadium</div>
+                    <div class="match-location">
+                        <span style="background: #012169; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        Londres, Inglaterra
+                    </div>
+                </div>
+
+                <div class="match-card">
+                    <div class="match-date">16 MAY 2026</div>
+                    <div class="match-teams">Paris FC vs PSG</div>
+                    <div class="match-stadium">🏟️ Stade Charléty</div>
+                    <div class="match-location">
+                        <span style="background: #002654; width: 24px; height: 16px; border-radius: 2px; display: inline-block;"></span>
+                        París, Francia
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="download-section">
+        <div class="download-card">
+            <h2 style="margin-bottom: 20px; color: #333;">📱 Descarga el Mapa Interactivo</h2>
+            <p style="margin-bottom: 30px; color: #666;">Obtén todas las ubicaciones de los estadios en formato KML para Google Maps</p>
+            
+            <button class="download-btn" onclick="downloadKML()">
+                📥 Descargar KML
+            </button>
+            
+            <div style="margin-top: 30px; padding: 20px; background: #f0f8ff; border-radius: 10px; text-align: left;">
+                <h4 style="color: #333; margin-bottom: 10px;">📍 Para importar a Google Maps:</h4>
+                <ol style="color: #666; margin-left: 20px;">
+                    <li>Ve a <strong>mymaps.google.com</strong></li>
+                    <li>Crea un nuevo mapa</li>
+                    <li>Haz clic en "Importar"</li>
+                    <li>Sube el archivo KML descargado</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Eurotour Football. Una experiencia futbolística única.</p>
+        </div>
+    </footer>
+
+    <script>
+        const kmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>Eurotour Football Matches 2026</name>
+<description>Map of stadiums for football matches during the eurotour from March to May 2026.</description>
+
+<Style id="stadium-icon">
+<IconStyle>
+<color>ff0000ff</color>
+<scale>1.2</scale>
+<Icon>
+<href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href>
+</Icon>
+</IconStyle>
+</Style>
+
+<Placemark>
+<name>Real Madrid vs Atlético de Madrid</name>
+<description>21-22 Mar 2026 - Santiago Bernabéu, Madrid</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>-3.688344,40.453053,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Borussia Dortmund vs Bayern Munich</name>
+<description>28-29 Mar 2026 - Signal Iduna Park, Dortmund</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>7.456074,51.492744,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Inter de Milán vs Roma</name>
+<description>4 Apr 2026 - San Siro, Milán</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>9.12215,45.478489,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Napoli vs AC Milan</name>
+<description>4 Apr 2026 - Stadio Diego Armando Maradona, Nápoles</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>14.192982,40.827967,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Roma vs Lazio</name>
+<description>18 Apr 2026 - Stadio Olimpico, Roma</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>12.454297,41.933964,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>AC Milan vs Juventus</name>
+<description>25 Apr 2026 - Allianz Stadium, Turín</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>7.640968,45.109734,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Everton vs Liverpool</name>
+<description>18 Apr 2026 - Goodison Park, Liverpool</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>-2.966681,53.438751,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Liverpool vs Chelsea</name>
+<description>9 May 2026 - Anfield, Liverpool</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>-2.961425,53.430759,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Manchester United vs Liverpool</name>
+<description>2 May 2026 - Old Trafford, Manchester</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>-2.292279,53.463493,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Arsenal vs Chelsea</name>
+<description>16 May 2026 - Emirates Stadium, London</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>-0.109112,51.554867,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Liverpool vs Chelsea</name>
+<description>9 May 2026 - Stamford Bridge, London</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>-0.19139,51.481834,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>FC Barcelona vs Real Madrid</name>
+<description>9-10 May 2026 - Spotify Camp Nou, Barcelona</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>2.12282,41.380898,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Paris FC vs PSG</name>
+<description>16 May 2026 - Stade Charléty, Paris</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>2.3465,48.8178,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>PSG Home Stadium</name>
+<description>Parc des Princes, Paris</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>2.252616,48.841465,0</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Bayern Munich Home Stadium</name>
+<description>Allianz Arena, Munich</description>
+<styleUrl>#stadium-icon</styleUrl>
+<Point>
+<coordinates>11.623746,48.218967,0</coordinates>
+</Point>
+</Placemark>
+
+</Document>
+</kml>`;
+
+        function downloadKML() {
+            const blob = new Blob([kmlContent], { type: 'application/vnd.google-earth.kml+xml' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Eurotour_Football_2026.kml';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>`
